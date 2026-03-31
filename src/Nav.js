@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import './Nav.css';
 
 function Nav() {
-    const [show, handleShow] = React.useState(false);
+    const [show, handleShow] = useState(false);
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
@@ -21,13 +21,13 @@ function Nav() {
         <div className={`nav ${show && "nav_black"}`}>
             <img
                 className="nav_logo"
-                src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Netflix_Logo.svg"
+                src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"    
                 alt="Netflix Logo"
             />
             <img
-                className="nav_avatar"
-                src="https://i.pravatar.cc/100"
-                alt="Avatar"
+                className="nav_menu"
+                src="https://upload.wikimedia.org/wikipedia/commons/5/59/Hamburger_icon_white.svg"
+                alt="Menu"
             />
         </div>
     );
