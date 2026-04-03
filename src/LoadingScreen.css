@@ -1,0 +1,40 @@
+.loadingScreen {
+  background-color: #000;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.loadingScreen__logo {
+  color: #E50914;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 80px;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  animation: trailexIntro 2.5s ease-in-out forwards;
+}
+
+@keyframes trailexIntro {
+  0% {
+    transform: scale(0.5); /* Starts smaller */
+    filter: brightness(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2); /* Grows larger than its final size for a "pop" effect */
+    filter: brightness(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.1); /* Settles at a slightly larger size */
+    filter: brightness(1);
+    opacity: 1;
+  }
+
+}
