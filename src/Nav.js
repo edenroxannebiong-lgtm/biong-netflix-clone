@@ -3,6 +3,8 @@ import "./Nav.css";
 
 function Nav() {
   const [show, handleShow] = useState(false);
+  
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const scrollListener = () => {
@@ -18,14 +20,27 @@ function Nav() {
 
   return (
     <div className={`nav ${show && "nav_black"}`}>
-      {/* Logo on the left */}
+     
       <h1 className="nav_logo">TRAILEX</h1>
 
-      {/* Hamburger on the right */}
-      <div className="nav_hamburger" onClick={() => console.log("Menu clicked")}>
-        <div className="line"></div>
-        <div className="line"></div>
-        <div className="line"></div>
+      
+      <div className="nav_hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <div className={`line ${menuOpen && "open"}`}></div>
+        <div className={`line ${menuOpen && "open"}`}></div>
+        <div className={`line ${menuOpen && "open"}`}></div>
+      </div>
+
+      
+      <div className={`nav_menu ${menuOpen && "active"}`}>
+        <ul className="nav_menu_list">
+          <li onClick={() => setMenuOpen(false)}>Trending Now</li>
+          <li onClick={() => setMenuOpen(false)}>Top Rated Movies</li>
+          <li onClick={() => setMenuOpen(false)}>Action Movies</li>
+          <li onClick={() => setMenuOpen(false)}>Comedy Movies</li>
+          <li onClick={() => setMenuOpen(false)}>Romance Movies</li>
+          <li onClick={() => setMenuOpen(false)}>Horror Movies</li>
+          <li onClick={() => setMenuOpen(false)}>Documentaries</li>
+        </ul>
       </div>
     </div>
   );

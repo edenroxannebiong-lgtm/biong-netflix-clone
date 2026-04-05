@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* 5. Logic: Show LoadingScreen if isLoading is true, else show the content */}
+      
       {isLoading ? (
         <LoadingScreen />
       ) : (
