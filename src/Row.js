@@ -10,16 +10,21 @@ function Row({ title, fetchUrl, isLargeRow }) {
     const [movies, setMovies] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState("");
 
-
     useEffect(() => {
-
         async function fetchData() {
-            const request = await axios.get(fetchUrl);
-            setMovies(request.data.results);
-            return request;
+            
+            if (!fetchUrl) return;
+
+            try {
+                const request = await axios.get(fetchUrl);
+                setMovies(request.data.results);
+                return request;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         }   
         fetchData();
-    }, [fetchUrl]);
+    }, [fetchUrl]); 
 
     const opts = {
         height: "390",
@@ -56,13 +61,16 @@ function Row({ title, fetchUrl, isLargeRow }) {
             
             <div className="row__posters">
                 {movies.map(movie => (
-                    <img 
-                        key={movie.id}
-                        onClick={() => handleClick(movie)}
-                        className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-                        src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
-                        alt={movie.name || movie.title || movie.original_name}
-                    />
+                    
+                    (movie.poster_path || movie.backdrop_path) && (
+                        <img 
+                            key={movie.id}
+                            onClick={() => handleClick(movie)}
+                            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+                            src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+                            alt={movie.name || movie.title || movie.original_name}
+                        />
+                    )
                 ))}
             </div>
             {trailerUrl && <Youtube videoId={trailerUrl} opts={opts} />}
